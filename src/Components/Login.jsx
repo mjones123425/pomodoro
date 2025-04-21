@@ -4,7 +4,7 @@
 import '/Users/kl/dev/ICSI418Final/pomodoro/src/App.css';
 import {React, useState} from "react";
 import axios from 'axios'
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link,useNavigate } from 'react-router-dom';
 import './Home.jsx';
 
 //Button that takes you to Home page
@@ -22,12 +22,12 @@ function MyButton() {
 const LoginContent = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate=useNavigate();
   const handleLogin = (event, username, password) => {
     axios.get('http://localhost:9000/getUser', { params: { username, password}})
         .then((res) => {
             if (res.data) {
-                alert('Login Successful')
+                navigate('/Home');
             }
             else {
                 alert('Wrong Credentials')
