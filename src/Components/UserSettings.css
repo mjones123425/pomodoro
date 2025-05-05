@@ -1,1 +1,165 @@
-// css file for user settings page
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    animation: fadeIn 1s ease;
+}
+.home-button {
+    position: absolute;
+    padding: 0.5rem 1rem;
+    background-color: #064318;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: #4f6253;
+  }
+.main-box {
+    background-color: rgb(106, 156, 56);
+    border-radius: 3rem;
+    padding: 4rem;
+    width: 60%;
+    height: 60%;
+    margin: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+.hidden1 {
+    background-color: #fff;
+    padding: 2rem;
+    padding-top: 0rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.account {
+    margin: 10%;
+    padding-top: 2rem;
+}
+.hidden1 h3 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+.hidden1 input {
+    margin-left: 10%;
+    width: 40%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: none;
+  }
+  .hidden1 .show {
+    width: 20%;
+    padding: 0.75rem;
+    background-color: #277630;
+    color: white;
+    border: none;
+    font-size: 1rem;
+  }
+  .hidden1 button {
+    width: 35%;
+    padding: 0.75rem;
+    margin-top: 2%;
+    background-color: #277630;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    margin-right: 4rem;
+  }
+  .hidden1 .buttons {
+    align-items: center;
+    justify-content: center;
+    margin-left: 7rem;
+  }
+  
+.reset-box {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    background: rgb(198, 249, 191);
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+.delete-box {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    background: rgb(198, 249, 191);
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+.file-input {
+    border: 2px dashed rgb(36, 69, 13);
+    padding: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+.hidden2 {
+    text-align: center;
+    background-color: #fff;
+    padding: 2rem;
+    padding-top: 1rem;
+    margin-top: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.hidden2 button {
+    margin-left: 1rem;
+}
+.hidden2 input {
+    margin-left: 1rem;
+}
+.limit-sites{
+    display: flex; 
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+.l1{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 2rem;
+}
+.l2{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center
+}
+.hidden2 li {
+    list-style: none;
+}
+.hidden2 li::before {
+    content: '🍅';
+    margin-right: 2rem;
+    font-size: 1.2rem;
+}
+.hidden3 {
+    background-color: #fff;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 2rem;
+    padding-top: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.hidden3 .file-input {
+    margin: auto;
+    width: 25rem;
+}
