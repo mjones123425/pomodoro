@@ -1,1 +1,109 @@
-// css for login/ initial page
+body {
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+form {
+    text-align: left;
+    background-color: white;
+    border-radius: 3rem;
+    width: auto;
+    height: auto;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+form label {
+    margin-right: 4rem;
+    width: 30%;
+    font-weight: 500;
+    color: #444;
+}
+form input {
+    width: 68%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+form button {
+    width: 50%;
+    padding: 0.75rem;
+    background-color: #115e22;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 1rem;
+    
+}
+form .b1 {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+form .skip {
+    margin-top: 4rem;
+    background-color: #f6af99;
+    color: black;
+}
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    animation: fadeIn 1s ease;
+}
+
+.login-box {
+    background-color: rgb(106, 156, 56);
+    border-radius: 3rem;
+    padding: 4rem;
+    width: 60%;
+    height: 60%;
+    margin: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.login-box:hover {
+    transform: scale(1.02);
+}
+
+.login-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.logo {
+    height: 13rem;
+    padding-inline: 38%;
+}
+.info-box{
+    background-color: white;
+    border-radius: 3rem;
+    width: auto;
+    height: auto;
+    padding-inline: 2rem;
+    padding-bottom: 1rem;
+    
+}
+.info-box h4{
+    text-align: center;
+    padding-top: 1rem;
+}
+
