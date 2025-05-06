@@ -1,22 +1,28 @@
-// page for the break time window
-import Login from './Login'
-import axios from 'axios'
-import React, {useState} from 'react';
-//import Home from './Users/kl/Shin_Pomodoro/pomodoro-main/src/Components/Home'
-import { BrowserRouter as Router, Link,useNavigate } from 'react-router-dom';
-// page for the break time window
-const BreakTime = () => {
-    return(
-    <div>
-       
-       
-        <h1>Break Time!</h1>
-        <Link to="/Home">
-                  <button type="button" class='skip'>Back to Home menu</button>
-        </Link>
-        <h2>↓Suggestions for your break↓</h2>
-        <a href="YOUR_NETFLIX_URL" target="https://www.netflix.com/browse">Netflix</a>
+import { useState, useEffect } from 'react';
+
+function BreakTimer() {
+  const [savedBreaks, setSavedBreaks] = useState([]);
+
+  useEffect(() => {
+    // Fetch saved breaks from localStorage
+    const savedItems = JSON.parse(localStorage.getItem('savedBreaks')) || [];
+    setSavedBreaks(savedItems);
+  }, []);
+
+  return (
+    <div className="break-time-container">
+      <h3>Your Saved Break Time Activities</h3>
+      {savedBreaks.length > 0 ? (
+        <ul className="saved-list">
+          {savedBreaks.map(item => (
+            <li key={item.id}>{item.title}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No break activities saved yet. Go pick some!</p>
+      )}
     </div>
-    );
+  );
 }
-export default BreakTime
+
+export default BreakTimer;
