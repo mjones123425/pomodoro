@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './UserSettings.css';
+import styles from './UserSettings.css'; 
 import logo from './logo.png';
-import { BrowserRouter as Router, Link,useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
 
 const UserSettings = () => {
     // to hide password
@@ -18,11 +18,14 @@ const UserSettings = () => {
     // to upload files
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
-    // to pick which restriction you want 
+    // to pick which restriction you want
     const [activeList, setActiveList] = useState("list1");
     const [list1, setList1] = useState([]);
     const [list2, setList2] = useState([]);
     const [newLink, setNewLink] = useState("");
+
+    // feedback state
+    const [feedbackText, setFeedbackText] = useState("");
 
     // sample user
     const user = {
@@ -38,25 +41,25 @@ const UserSettings = () => {
         setConfirmPassword("");
         setError("");
     };
-    
+
     // done for reset password
     const handleDone = () => {
         if (newPassword !== confirmPassword) {
-          setError("New passwords do not match.");
-          return;
+            setError("New passwords do not match.");
+            return;
         }
         setError("");
         // add real password validation here
         console.log("Old Password:", oldPassword);
         console.log("New Password:", newPassword);
-    
+
         setShowPopup(false);
     };
 
     const handleDeleteClick = () => {
         setShowDeletePopup(true);
     };
-    
+
     //delete account
     const handleDeleteConfirm = () => {
         console.log("Account deleted");
@@ -66,28 +69,28 @@ const UserSettings = () => {
 
     // drop file to add
     const handleDrop = (event) => {
-      event.preventDefault();
-      const files = Array.from(event.dataTransfer.files);
-      setUploadedFiles(files);
+        event.preventDefault();
+        const files = Array.from(event.dataTransfer.files);
+        setUploadedFiles(files);
     };
 
     // drag part of the "drag and drop"
     const handleDragOver = (event) => {
-      event.preventDefault();
+        event.preventDefault();
     };
 
     const handleFileInput = (event) => {
-      const files = Array.from(event.target.files);
-      setUploadedFiles(files);
+        const files = Array.from(event.target.files);
+        setUploadedFiles(files);
     };
 
-    // check url 
+    // check url
     const isValidUrl = (url) => {
         try {
-          const parsed = new URL(url);
-          return parsed.protocol === "http:" || parsed.protocol === "https:";
+            const parsed = new URL(url);
+            return parsed.protocol === "http:" || parsed.protocol === "https:";
         } catch (e) {
-          return false;
+            return false;
         }
     };
 
@@ -98,7 +101,7 @@ const UserSettings = () => {
             setError("Link cannot be empty.");
             return;
         }
-        
+
         if (!isValidUrl(trimmed)) { //wrong format
             setError("Please enter a valid URL (must start with http or https).");
             return;
@@ -107,7 +110,7 @@ const UserSettings = () => {
         setNewLink("");
         setError("");
     };
-  
+
     // Add item to List 2
     const handleAddToList2 = (e) => {
         const trimmed = newLink.trim();
@@ -115,7 +118,7 @@ const UserSettings = () => {
             setError("Link cannot be empty.");
             return;
         }
-        
+
         if (!isValidUrl(trimmed)) { //wrong format
             setError("Please enter a valid URL (must start with http or https).");
             return;
@@ -128,235 +131,232 @@ const UserSettings = () => {
         setNewLink("");
         setError("");
     };
-  
+
     // Remove item from List 1
     const handleRemoveFromList1 = (itemToRemove) => {
-      setList1(list1.filter((item) => item !== itemToRemove));
+        setList1(list1.filter((item) => item !== itemToRemove));
     };
-  
+
     // Remove item from List 2
     const handleRemoveFromList2 = (itemToRemove) => {
-      setList2(list2.filter((item) => item !== itemToRemove));
+        setList2(list2.filter((item) => item !== itemToRemove));
     };
-    
+
+    const handleFeedbackSubmit = () => {
+        console.log("Feedback submitted:", feedbackText);
+        setFeedbackText(""); // Clear the text box
+        // In a real application, you would send this feedback to a server
+    };
+
     return (
-        <div className="main-container">
+        <div className={styles.mainContainer}>
             <style>
+                {`
                 @import url('https://fonts.googleapis.com/css2?family=Signika:wght@600&display=swap');
+                `}
             </style>
-            <div className="main-box">
-            <Link to="/Home">
-                <button class="home-button">Go to Home Page</button>
-            </Link>
+            <div className={styles.mainBox}>
+                <Link to="/Home">
+                    <button className={styles.homeButton}>Go to Home Page</button>
+                </Link>
                 <h1>User Settings</h1>
-                <img src={logo} alt="Logo" class="logo"/>
+                <img src={logo} alt="Logo" className={styles.logo} />
 
-                <form class="hidden1">
-                {/* account */}
-                <div className='account'>
-                    <h3>My Account</h3>
-                    <label>Username:</label>
-                    <input type="text" value={user.username} readOnly />
-                    <br></br>
+                <form className={styles.hidden1}>
+                    {/* account */}
+                    <div className={styles.account}>
+                        <h3>My Account</h3>
+                        <label>Username:</label>
+                        <input type="text" value={user.username} readOnly />
+                        <br></br>
 
-                    <label>Email:</label>
-                    <input type="email" value={user.email} readOnly />
+                        <label>Email:</label>
+                        <input type="email" value={user.email} readOnly />
 
-                    <br></br>
-                    <label>Password:</label>
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        value={user.password}
-                        readOnly
-                    />
-                    <button type="button" className='show'onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? "Hide" : "Show"}
-                    </button>
-                </div>
-                <div className='buttons'>
+                        <br></br>
+                        <label>Password:</label>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            value={user.password}
+                            readOnly
+                        />
+                        <button type="button" className={styles.show} onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? "Hide" : "Show"}
+                        </button>
+                    </div>
+                    <div className={styles.buttons}>
                         <button type="button" onClick={handleResetClick}>Reset Password</button>
                         <button type="button" onClick={handleDeleteClick}>Delete Account</button>
-                </div>
+                    </div>
                 </form>
 
                 {/* reset password popup */}
                 {showPopup && (
-                    <div className='reset-box'
-                      style={{
-                        zIndex: 1000,
-                      }}
+                    <div className={styles.resetBox}
+
                     >
                         <h3>Reset Password</h3>
 
                         <label>Old Password:</label>
                         <input
-                          type="password"
-                          value={oldPassword}
-                          onChange={(e) => setOldPassword(e.target.value)}
+                            type="password"
+                            value={oldPassword}
+                            onChange={(e) => setOldPassword(e.target.value)}
                         />
                         <br></br>
 
                         <label>New Password:</label>
                         <input
-                          type="password"
-                          value={newPassword}
-                          onChange={(e) => setNewPassword(e.target.value)}
+                            type="password"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
                         />
                         <br></br>
 
                         <label>Confirm New Password:</label>
                         <input
-                          type="password"
-                          value={confirmPassword}
-                          onChange={(e) => setConfirmPassword(e.target.value)}
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                         />
 
                         {error && <p style={{ color: "red" }}>{error}</p>}
                         <br></br><br></br>
                         <button onClick={handleDone}>Done</button>
                     </div>
-                )} 
+                )}
 
                 {/* delete account popup */}
                 {showDeletePopup && (
-                    <div className='delete-box'
-                      style={{
-                        zIndex: 1000,
-                      }}
+                    <div className={styles.deleteBox}
+
                     >
                         <h3>Are you sure you want to delete your account?</h3>
                         <p>This action cannot be undone.</p>
                         <br></br>
-                          <button onClick={handleDeleteConfirm}>Yes, Delete</button>
-                          <button onClick={() => setShowDeletePopup(false)}>Cancel</button>
+                        <button onClick={handleDeleteConfirm}>Yes, Delete</button>
+                        <button onClick={() => setShowDeletePopup(false)}>Cancel</button>
                     </div>
                 )}
 
-                
+
                 {/* pick which restriction */}
-                <div className='hidden2'>
+                <div className={styles.hidden2}>
                     <h3>Limit Web Access</h3>
-                <div className='limit-sites'>
-                    <label className='l1'
-                      style={{
-                        backgroundColor: activeList === "list1" ? "#4CAF50" : "#ccc",
-                        color: activeList === "list1" ? "#fff" : "#333"
-                      }}
-                      onClick={() => setActiveList("list1")}
-                    >
-                      Lock Sites
-                    </label>
-                  
-                    <label className='l2'
-                       style={{
-                        backgroundColor: activeList === "list2" ? "#4CAF50" : "#ccc",
-                        color: activeList === "list2" ? "#fff" : "#333"
-                      }}
-                      onClick={() => setActiveList("list2")}
-                    >
-                      Unlock Sites
-                    </label>
-                </div>
+                    <div className={styles.limitSites}>
+                        <label className={styles.l1}
 
-                <div>
-                    {/* lock sites is clicked */}
-                    {activeList === "list1" && (
-                    <div style = {{backgroundColor:'rgb(252, 227, 204)',padding:"2rem"}}>
-                        <h3> Lock these sites during the duration of a cycle:</h3>
-                        <div style={{gap: "8px", marginTop: "5px"}}>
-                        <label>Add Site:</label>
-                            <input
-                                type="text"
-                                value={newLink}
-                                onChange={(e) => setNewLink(e.target.value)}
-                                placeholder="https://example.com"
-                            />
-                            <button onClick={handleAddToList1}>+</button>
-                        </div>
+                            onClick={() => setActiveList("list1")}
+                        >
+                            Lock Sites
+                        </label>
 
-                        {error && <p style={{ color: "red", marginTop: "4px" }}>{error}</p>}
-
-                        {list1.length > 0 && (
-                          <ul style={{ marginTop: "10px" }}>
-                            {list1.map((link, index) => (
-                              <li key={index} style={{alignItems: "center", gap: "8px" }}>
-                                <a href={link} target="_blank" rel="noopener noreferrer">
-                                  {link}
-                                </a>
-                                <button onClick={() => handleRemoveFromList1(link)}>x</button>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                        <label className={styles.l2}
+                            onClick={() => setActiveList("list2")}
+                        >
+                            Unlock Sites
+                        </label>
                     </div>
-                    )}
 
-                    {/* unlock sites is clicked */}
-                    {activeList === "list2" && (
-                    <div style = {{backgroundColor:'rgb(215, 248, 206)',padding:"2rem"}}>
-                        <h3>Limit access to ONLY these sites during a cycle:</h3>
-                            <div style={{ gap: "8px", marginTop: "5px" }}>
-                            <label>Add Site:</label>
-                              <input
-                                type="text"
-                                value={newLink}
-                                onChange={(e) => setNewLink(e.target.value)}
-                                placeholder="https://example.com"
-                              />
-                              <button onClick={handleAddToList2}>+</button>
+                    <div>
+                        {/* lock sites is clicked */}
+                        {activeList === "list1" && (
+                            <div style={{ backgroundColor: 'rgb(252, 227, 204)', padding: "2rem" }}>
+                                <h3> Lock these sites during the duration of a cycle:</h3>
+                                <div style={{ gap: "8px", marginTop: "5px" }}>
+                                    <label>Add Site:</label>
+                                    <input
+                                        type="text"
+                                        value={newLink}
+                                        onChange={(e) => setNewLink(e.target.value)}
+                                        placeholder="https://example.com"
+                                    />
+                                    <button onClick={handleAddToList1}>+</button>
+                                </div>
+
+                                {error && <p style={{ color: "red", marginTop: "4px" }}>{error}</p>}
+
+                                {list1.length > 0 && (
+                                    <ul style={{ marginTop: "10px" }}>
+                                        {list1.map((link, index) => (
+                                            <li key={index} style={{ alignItems: "center", gap: "8px" }}>
+                                                <a href={link} target="_blank" rel="noopener noreferrer">
+                                                    {link}
+                                                </a>
+                                                <button onClick={() => handleRemoveFromList1(link)}>x</button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                             </div>
-
-                        {error && <p style={{ color: "red", marginTop: "4px" }}>{error}</p>}
-
-                        {list2.length > 0 && (
-                          <ul style={{ marginTop: "10px" }}>
-                            {list2.map((link, index) => (
-                              <li key={index} style={{ alignItems: "center", gap: "8px" }}>
-                                <a href={link} target="_blank" rel="noopener noreferrer">
-                                  {link}
-                                </a>
-                                <button onClick={() => handleRemoveFromList2(link)}>x</button>
-                              </li>
-                            ))}
-                          </ul>
                         )}
+
+                        {/* unlock sites is clicked */}
+                        {activeList === "list2" && (
+                            <div style={{ backgroundColor: 'rgb(215, 248, 206)', padding: "2rem" }}>
+                                <h3>Limit access to ONLY these sites during a cycle:</h3>
+                                <div style={{ gap: "8px", marginTop: "5px" }}>
+                                    <label>Add Site:</label>
+                                    <input
+                                        type="text"
+                                        value={newLink}
+                                        onChange={(e) => setNewLink(e.target.value)}
+                                        placeholder="https://example.com"
+                                    />
+                                    <button onClick={handleAddToList2}>+</button>
+                                </div>
+
+                                {error && <p style={{ color: "red", marginTop: "4px" }}>{error}</p>}
+
+                                {list2.length > 0 && (
+                                    <ul style={{ marginTop: "10px" }}>
+                                        {list2.map((link, index) => (
+                                            <li key={index} style={{ alignItems: "center", gap: "8px" }}>
+                                                <a href={link} target="_blank" rel="noopener noreferrer">
+                                                    {link}
+                                                </a>
+                                                <button onClick={() => handleRemoveFromList2(link)}>x</button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
+                        )}
+                        <br></br>
+                        <div className={styles.toDo}>
+                        </div>
                     </div>
-                    )}
-                    <br></br>
-                    <div className='to-do'>
-                    </div>
-                </div>
                 </div>
 
                 {/* drag and drop files */}
-                <div className='hidden3'>
-                <h3>Add files for your break time:</h3>
-                <div className='file-input'
-                    onDrop={handleDrop}
-                    onDragOver={handleDragOver}
-                    onClick={() => document.getElementById("fileInput").click()}
-                >
-                    <p>Drag and drop files, or click to select</p>
-                    <input
-                      id="fileInput"
-                      type="file"
-                      multiple
-                      style={{ display: "none" }}
-                      onChange={handleFileInput}
-                    />
-                </div>
-
-                {uploadedFiles.length > 0 && (
-                    <div>
-                        <h4>Selected Files:</h4>
-                        <ul>
-                            {uploadedFiles.map((file, index) => (
-                            <li key={index}>{file.name}</li>
-                            ))}
-                        </ul>
+                <div className={styles.hidden3}>
+                    <h3>Add files for your break time:</h3>
+                    <div className={styles.fileInput}
+                        onDrop={handleDrop}
+                        onDragOver={handleDragOver}
+                        onClick={() => document.getElementById("fileInput").click()}
+                    >
+                        <p>Drag and drop files, or click to select</p>
+                        <input
+                            id="fileInput"
+                            type="file"
+                            multiple
+                            style={{ display: "none" }}
+                            onChange={handleFileInput}
+                        />
                     </div>
-                )}
-                <br></br>
+
+                    {uploadedFiles.length > 0 && (
+                        <div>
+                            <h4>Selected Files:</h4>
+                            <ul>
+                                {uploadedFiles.map((file, index) => (
+                                    <li key={index}>{file.name}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                    <br></br>
                 </div>
                 {/* Feedback Section */}
                 <div className={styles.feedbackSection}>
@@ -364,7 +364,7 @@ const UserSettings = () => {
                     <textarea
                         value={feedbackText}
                         onChange={(e) => setFeedbackText(e.target.value)}
-                        placeholder="Have feedback? We appreciate all suggestions!"
+                        placeholder="Enter your feedback here..."
                     />
                     <button onClick={handleFeedbackSubmit}>Submit</button>
                 </div>
