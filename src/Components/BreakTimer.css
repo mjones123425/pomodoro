@@ -1,1 +1,6 @@
-
+.fullscreen-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+     background: rgba(73, 121, 13, 0.755);
+  }
