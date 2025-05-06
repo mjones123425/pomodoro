@@ -5,6 +5,7 @@ import Home from './Components/Home'
 import UserSettings from './Components/UserSettings'
 import MinTimer from './Components/MinTimer'
 import WorkTimer from './Components/WorkTimer'
+import BreakTimer from './Components/BreakTimer'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/UserSettings" element={<UserSettings />} />
           <Route path="/MinTimer" element={<MinTimer />} />
           <Route path="/WorkTimer" element={<WorkTimer />} />
+          <Route path="/BreakTimer" element={<BreakTimer />} />
         </Routes>
       </Router>
     </div>
@@ -27,4 +29,3 @@ function App() {
 }
 
 export default App;
-
