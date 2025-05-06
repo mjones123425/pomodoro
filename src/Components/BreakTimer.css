@@ -1,6 +1,49 @@
-.fullscreen-container {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-     background: rgba(73, 121, 13, 0.755);
-  }
+/* // css for break window */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.break-box {
+    background-color: rgb(106, 156, 56);
+    border-radius: 3rem;
+    padding: 4rem;
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.button-format {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    background-color: #064318;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.time-break {
+    background-color: white;
+    padding: 2px;
+    border-radius: 10px;
+}
+
+.break-suggestions {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.pause-resume {
+    margin-top: 25px;
+}
+
+.skip {
+    margin-bottom: 25px;
+}
