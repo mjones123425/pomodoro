@@ -358,6 +358,16 @@ const UserSettings = () => {
                 )}
                 <br></br>
                 </div>
+                {/* Feedback Section */}
+                <div className={styles.feedbackSection}>
+                    <label>Have feedback? We appreciate all suggestions!</label>
+                    <textarea
+                        value={feedbackText}
+                        onChange={(e) => setFeedbackText(e.target.value)}
+                        placeholder="Have feedback? We appreciate all suggestions!"
+                    />
+                    <button onClick={handleFeedbackSubmit}>Submit</button>
+                </div>
             </div>
         </div>
     );
