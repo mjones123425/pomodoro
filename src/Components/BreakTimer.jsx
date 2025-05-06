@@ -2,7 +2,7 @@
 import Login from './Login'
 import axios from 'axios'
 import React, {useState, useEffect, useRef} from 'react';
-//import Home from './Users/kl/Shin_Pomodoro/pomodoro-main/src/Components/Home'
+import BreakTimer from './BreakTimer.css';
 import { BrowserRouter as Router, Link,useNavigate, useLocation } from 'react-router-dom';
 // page for the break time window
 const BreakTime = () => {
@@ -61,16 +61,22 @@ const BreakTime = () => {
     };
 
     return(
-    <div>
-        <h1>Break Time!</h1>
-        <h2>{formatTime(secondsLeft)}</h2>
-        <button onClick={togglePause}>{isPaused ? 'Resume' : 'Pause'}</button>
-        <Link to="/Home">
-                <button type="button" class='skip'>Back to Home menu</button>
-        </Link>
-        <h2>↓Suggestions for your break↓</h2>
-        <a href="YOUR_NETFLIX_URL" target="https://www.netflix.com/browse">Netflix</a>
-    </div>
+      <div className="break-box">
+          <div className="time-break">
+            <h1>Break Time!</h1>
+            <h2>{formatTime(secondsLeft)}</h2>
+          </div>
+          <div className="button-format">
+            <button className="pause-resume" onClick={togglePause}>{isPaused ? 'Resume' : 'Pause'}</button>
+            <Link to="/Home">
+                <button type="button" className='skip'>Back to Home menu</button>
+            </Link>
+          </div>
+          <div className="break-suggestions">
+            <h2>↓Suggestions for your break↓</h2>
+            <a href="YOUR_NETFLIX_URL" target="https://www.netflix.com/browse">Netflix</a>
+          </div>
+      </div>
     );
 }
 export default BreakTime
