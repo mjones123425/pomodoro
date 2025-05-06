@@ -1,4 +1,4 @@
-//* NOTE FOR TEAM:
+// NOTE FOR TEAM:
 //*install "npm install react-router-dom" and "npm install axios" before you run the code. 
 
 import {React, useState} from "react";
