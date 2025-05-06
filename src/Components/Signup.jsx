@@ -2,14 +2,22 @@ import Login from './Login'
 import Home from './Home'
 import axios from 'axios'
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 // front-end API end-point
 const handleSignUp = (event, username, f_tName, l_tName, password, email) => {
     axios.post('http://localhost:3000/createUser', {username, f_tName, l_tName, password, email })
-        .catch((err) => alert('Error in Signing Up'))
+        .then((res) =>
+            {
+                alert('Signup Successful')
+            })
+         .catch((error) => 
+            {
+                 alert('Error In Signing Up')
+                 console.log(error)
+            })
 }
 
 // main 
@@ -62,11 +70,10 @@ const Signup = () => {
                 </label>
                 <br></br>
 
-                <Link to="/Home">
+                
                 <button type="button" onClick={(event) => handleSignUp(event, username, f_name, l_name, password, email)}>
                      Signup
                 </button>
-                </Link>
             </form>
             
             </div>
