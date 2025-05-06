@@ -32,9 +32,7 @@ const User = require('./UserSchema');
                  const user = new User(req.body);
                  user.save()
                  console.log(`User created! ${user}`)
-                 res.send(user)
-                 alert("Sign Up Successful!");
-             }
+                 res.send(user)             }
              else {
                  console.log("Username already exists")
                  res.status(500).send("Username already exists")
